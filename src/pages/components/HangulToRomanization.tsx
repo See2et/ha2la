@@ -23,18 +23,42 @@ function HangulToRomanization() {
 
   return (
     <div>
-      <h2>Hangul to Romanization Converter</h2>
-      <div>
-        <label>
-          Enter Hangul Text:
-          <input
-            type="text"
-            value={hangulText}
-            onChange={handleChange} />
-        </label>
-      </div>
-      <div>
-        <p>Result: {romanizedText}</p>
+      <h1>Hangul to Romanization Converter</h1>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        gridTemplateRows: "repeat(2, 1fr)",
+      }}>
+        <div style={{
+          gridColumn: "1",
+          gridRowStart: "1",
+          gridRowEnd: "2",
+        }}>
+          <label>
+            <p style={{ gridRow: "1" }}>Enter Hangul Text:</p>
+            <textarea
+              style={{
+                gridRow: "2",
+                width: "90%",
+              }}
+              value={hangulText}
+              onChange={() => handleChange} />
+          </label>
+        </div>
+        <div style={{
+          gridColumn: "2",
+          gridRowStart: "1",
+          gridRowEnd: "2",
+        }}>
+          <p style={{ gridRow: "1" }}>Result: </p>
+          <textarea
+            style={{
+              gridRow: "2",
+              width: "90%",
+            }}
+            value={romanizedText}
+            readOnly />
+        </div>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/babel-plugin": "^11.10.6",
     "@emotion/react": "^11.10.6",
     "@next/font": "13.2.4",
     "@types/node": "18.15.7",

@@ -1,21 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
 import HangulToRomanization from './components/HangulToRomanization'
 import { css } from '@emotion/react'
 
 const inter = Inter({ subsets: ['latin'] })
-
-const Container = css`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-`
 
 export default function Home() {
   return (
@@ -26,7 +15,16 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main css={Container}>
+      <main style={{
+          height: '100vh',
+          width: '100vw',
+          boxSizing: 'border-box',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#202020',
+        }}>
         <HangulToRomanization />
       </main>
     </>
