@@ -26,13 +26,15 @@ function HangulToRomanization() {
     setHangulText(value);
     const disassembled = Hangul.d(value, true);
     const romanaized = disassembled
-      .map(char => connectDiphthong(char))
+      .filter(char => {
+        console.log(char)
+        return !char.includes(" ")
+      })
+      .map(char => {
+        return connectDiphthong(char);
+      })
       .map(char => {
         return char
-          .filter(part => {
-            console.log("There is a space")
-            return part !== " ";
-          })
           .map((part, index) => {
             if (index === 0 && part === "ㅇ") return "";
             return romanizationTable[part as keyof typeof romanizationTable] ?? part
@@ -95,44 +97,44 @@ export default HangulToRomanization;
 
 function connectDiphthong(char: string[]) {
   const cons = char.length >= 3 ? [char[0]] : [""];
-  if (
-    char.includes(Hangul.d("ㅘ", true).flat(1)[0]) &&
-    char.includes(Hangul.d("ㅘ", true).flat(1)[1])
-  ) {
-    return [...cons, "ㅘ"]
-  } else if (
-    char.includes(Hangul.d("ㅙ", true).flat(1)[0]) &&
-    char.includes(Hangul.d("ㅙ", true).flat(1)[1])
-  ) {
-    return [...cons, "ㅙ"]
-  } else if (
-    char.includes(Hangul.d("ㅚ", true).flat(1)[0]) &&
-    char.includes(Hangul.d("ㅚ", true).flat(1)[1])
-  ) {
-    return [...cons, "ㅚ"]
-  } else if (
-    char.includes(Hangul.d("ㅝ", true).flat(1)[0]) &&
-    char.includes(Hangul.d("ㅝ", true).flat(1)[1])
-  ) {
-    return [...cons, "ㅝ"]
-  } else if (
-    char.includes(Hangul.d("ㅞ", true).flat(1)[0]) &&
-    char.includes(Hangul.d("ㅞ", true).flat(1)[1])
-  ) {
-    return [...cons, "ㅞ"]
-  } else if (
-    char.includes(Hangul.d("ㅟ", true).flat(1)[0]) &&
-    char.includes(Hangul.d("ㅟ", true).flat(1)[1])
-  ) {
-    return [...cons, "ㅟ"]
-  } else if (
-    char.includes(Hangul.d("ㅢ", true).flat(1)[0]) &&
-    char.includes(Hangul.d("ㅢ", true).flat(1)[1])
-  ) {
-    return [...cons, "ㅢ"]
-  } else {
-    return char
-  }
+        if (
+          char.includes(Hangul.d("ㅘ", true).flat(1)[0]) &&
+          char.includes(Hangul.d("ㅘ", true).flat(1)[1])
+        ) {
+          return [...cons, "ㅘ"]
+        } else if (
+          char.includes(Hangul.d("ㅙ", true).flat(1)[0]) &&
+          char.includes(Hangul.d("ㅙ", true).flat(1)[1])
+        ) {
+          return [...cons, "ㅙ"]
+        } else if (
+          char.includes(Hangul.d("ㅚ", true).flat(1)[0]) &&
+          char.includes(Hangul.d("ㅚ", true).flat(1)[1])
+        ) {
+          return [...cons, "ㅚ"]
+        } else if (
+          char.includes(Hangul.d("ㅝ", true).flat(1)[0]) &&
+          char.includes(Hangul.d("ㅝ", true).flat(1)[1])
+        ) {
+          return [...cons, "ㅝ"]
+        } else if (
+          char.includes(Hangul.d("ㅞ", true).flat(1)[0]) &&
+          char.includes(Hangul.d("ㅞ", true).flat(1)[1])
+        ) {
+          return [...cons, "ㅞ"]
+        } else if (
+          char.includes(Hangul.d("ㅟ", true).flat(1)[0]) &&
+          char.includes(Hangul.d("ㅟ", true).flat(1)[1])
+        ) {
+          return [...cons, "ㅟ"]
+        } else if (
+          char.includes(Hangul.d("ㅢ", true).flat(1)[0]) &&
+          char.includes(Hangul.d("ㅢ", true).flat(1)[1])
+        ) {
+          return [...cons, "ㅢ"]
+        } else {
+          return char
+        }
 }
 
 const romanizationTable = {
