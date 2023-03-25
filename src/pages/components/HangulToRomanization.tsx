@@ -2,6 +2,15 @@ import React, { useState, ChangeEvent } from "react";
 import Hangul from "hangul-js";
 import { css } from "@emotion/react";
 
+const container = css({
+  display: "grid",
+  gridTemplateColumns: "repeat(2, 1fr)",
+  gridTemplateRows: "repeat(2, 1fr)",
+  flexGrow: 1,
+  columnGap: "1vw",
+  width: "80vw"
+})
+
 function HangulToRomanization() {
   const [hangulText, setHangulText] = useState<string>("");
   const [romanizedText, setRomanizedText] = useState<string>("");
@@ -22,51 +31,48 @@ function HangulToRomanization() {
   };
 
   return (
-    <div>
-      <h1>Hangul to Romanization Converter</h1>
+    <div css={container}>
       <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
-        gridTemplateRows: "repeat(2, 1fr)",
-        height: "300px",
-        marginTop: "1rem"
+        gridColumn: "1",
+        gridRowStart: "1",
+        gridRowEnd: "2",
       }}>
-        <div style={{
-          gridColumn: "1",
-          gridRowStart: "1",
-          gridRowEnd: "2",
-        }}>
-          <label>
-            <p style={{ gridRow: "1" }}>Enter Hangul Text:</p>
-            <textarea
-              style={{
-                gridRow: "2",
-                width: "90%",
-                height: "100%",
-                resize: "none",
-                fontSize: "1.5rem"
-              }}
-              value={hangulText}
-              onChange={handleChange} />
-          </label>
-        </div>
-        <div style={{
-          gridColumn: "2",
-          gridRowStart: "1",
-          gridRowEnd: "2",
-        }}>
-          <p style={{ gridRow: "1" }}>Result: </p>
+        <label>
+          <p style={{
+            gridRow: "1",
+            fontSize: "3vw"
+          }}>Enter Hangul Text:</p>
           <textarea
             style={{
               gridRow: "2",
-              width: "90%",
+              width: "100%",
               height: "100%",
               resize: "none",
-              fontSize: "1.5rem"
+              fontSize: "3vw"
             }}
-            value={romanizedText}
-            readOnly />
-        </div>
+            value={hangulText}
+            onChange={handleChange} />
+        </label>
+      </div>
+      <div style={{
+        gridColumn: "2",
+        gridRowStart: "1",
+        gridRowEnd: "2",
+      }}>
+        <p style={{
+          gridRow: "1",
+          fontSize: "3vw"
+        }}>Result: </p>
+        <textarea
+          style={{
+            gridRow: "2",
+            width: "100%",
+            height: "100%",
+            resize: "none",
+            fontSize: "3vw"
+          }}
+          value={romanizedText}
+          readOnly />
       </div>
     </div>
   );
