@@ -6,7 +6,7 @@ function HangulToRomanization() {
   const [hangulText, setHangulText] = useState<string>("");
   const [romanizedText, setRomanizedText] = useState<string>("");
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
     setHangulText(value);
     const disassembled = Hangul.d(value, true);
@@ -28,6 +28,8 @@ function HangulToRomanization() {
         display: "grid",
         gridTemplateColumns: "repeat(2, 1fr)",
         gridTemplateRows: "repeat(2, 1fr)",
+        height: "300px",
+        marginTop: "1rem"
       }}>
         <div style={{
           gridColumn: "1",
@@ -40,9 +42,12 @@ function HangulToRomanization() {
               style={{
                 gridRow: "2",
                 width: "90%",
+                height: "100%",
+                resize: "none",
+                fontSize: "1.5rem"
               }}
               value={hangulText}
-              onChange={() => handleChange} />
+              onChange={handleChange} />
           </label>
         </div>
         <div style={{
@@ -55,6 +60,9 @@ function HangulToRomanization() {
             style={{
               gridRow: "2",
               width: "90%",
+              height: "100%",
+              resize: "none",
+              fontSize: "1.5rem"
             }}
             value={romanizedText}
             readOnly />
