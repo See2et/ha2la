@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import Hangul from "hangul-js";
 import { css } from "@emotion/react";
 

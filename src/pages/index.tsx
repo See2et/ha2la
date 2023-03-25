@@ -1,10 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import HangulToRomanization from './components/HangulToRomanization'
 import { css } from '@emotion/react'
-
-const inter = Inter({ subsets: ['latin'] })
 
 const main = css({
   height: '100vh',
