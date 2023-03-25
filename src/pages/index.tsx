@@ -7,6 +7,16 @@ import { css } from '@emotion/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
+const Container = css`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+`
+
 export default function Home() {
   return (
     <>
@@ -16,7 +26,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main css={Container}>
         <HangulToRomanization />
       </main>
     </>

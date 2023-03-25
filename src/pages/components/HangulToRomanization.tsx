@@ -12,7 +12,10 @@ function HangulToRomanization() {
     const disassembled = Hangul.d(value, true);
     const romanaized = disassembled
       .map(char => char
-        .map(part => romanizationTable[part as keyof typeof romanizationTable] ?? part)
+        .map((part, index) => {
+          if (index === 0 && part === "ㅇ") return "";
+          return romanizationTable[part as keyof typeof romanizationTable] ?? part
+        })
         .join(''))
       .join(' ');
     setRomanizedText(romanaized);
@@ -51,7 +54,7 @@ const romanizationTable = {
   "ㅃ": "pp",
   "ㅅ": "s",
   "ㅆ": "ss",
-  "ㅇ": "",
+  "ㅇ": "ng",
   "ㅈ": "j",
   "ㅉ": "jj",
   "ㅊ": "ch",
