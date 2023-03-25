@@ -51,6 +51,9 @@ function HangulToRomanization() {
               width: 100%;
               resize: none;
               font-size: 3vw;
+              @media ${smartphone} {
+                font-size: 6vw;
+              }
               flex-grow: 1;
             `}
           value={hangulText}
@@ -69,6 +72,9 @@ function HangulToRomanization() {
               width: 100%;
               resize: none;
               font-size: 3vw;
+              @media ${smartphone} {
+                font-size: 6vw;
+              }
               flex-grow: 1;
             `}
           value={romanizedText}
