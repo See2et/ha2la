@@ -2,14 +2,20 @@ import { useState, ChangeEvent } from "react";
 import Hangul from "hangul-js";
 import { css } from "@emotion/react";
 
-const container = css({
-  display: "grid",
-  gridTemplateColumns: "repeat(2, 1fr)",
-  gridTemplateRows: "repeat(2, 1fr)",
-  flexGrow: 1,
-  columnGap: "1vw",
-  width: "80vw"
-})
+const smartphone = "screen and (max-width: 768px)"
+
+const container = css`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 1vw;
+  grid-row-gap: 1vw;
+  width: 80vw;
+  flex-grow: 1;
+  @media ${smartphone} {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+`
 
 function HangulToRomanization() {
   const [hangulText, setHangulText] = useState<string>("");
@@ -32,48 +38,42 @@ function HangulToRomanization() {
 
   return (
     <div css={container}>
-      <div style={{
-        gridColumn: "1",
-        gridRowStart: "1",
-        gridRowEnd: "2",
-      }}>
-        <label>
-          <p style={{
-            gridRow: "1",
-            fontSize: "3vw"
-          }}>Enter Hangul Text:</p>
-          <textarea
-            style={{
-              gridRow: "2",
-              width: "100%",
-              height: "100%",
-              resize: "none",
-              fontSize: "3vw"
-            }}
-            value={hangulText}
-            onChange={handleChange} />
-        </label>
-      </div>
-      <div style={{
-        gridColumn: "2",
-        gridRowStart: "1",
-        gridRowEnd: "2",
-      }}>
+      <label css={css`
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        `}>
         <p style={{
-          gridRow: "1",
+          fontSize: "3vw"
+        }}>Enter Hangul Text:</p>
+        <textarea
+          css={css`
+              width: 100%;
+              resize: none;
+              font-size: 3vw;
+              flex-grow: 1;
+            `}
+          value={hangulText}
+          onChange={handleChange} />
+      </label>
+      <label css={css`
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      `}>
+        <p style={{
           fontSize: "3vw"
         }}>Result: </p>
         <textarea
-          style={{
-            gridRow: "2",
-            width: "100%",
-            height: "100%",
-            resize: "none",
-            fontSize: "3vw"
-          }}
+          css={css`
+              width: 100%;
+              resize: none;
+              font-size: 3vw;
+              flex-grow: 1;
+            `}
           value={romanizedText}
           readOnly />
-      </div>
+      </label>
     </div>
   );
 }
