@@ -37,6 +37,8 @@ function HangulToRomanization() {
         return char
           .map((part, index) => {
             if (index === 0 && part === "ㅇ") return "";
+            if (index !== 0 && part === "ㅅ") return "t";
+            if (index !== 0 && part === "ㄱ") return "k";
             return romanizationTable[part as keyof typeof romanizationTable] ?? part
           })
           .join('')
